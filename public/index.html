@@ -15,7 +15,7 @@
 
     <section id="map" aria-label="World map">
       <h2>CASE MAP</h2>
-      <img class="art" src="art/map.svg" alt="Animated world map with the rogue agent's route">
+      <canvas id="globe" class="globe" role="img" aria-label="Rotating globe showing the rogue agent's route through Paris, Tokyo, Cairo and Rio. Drag to spin; click a city to travel."></canvas>
       <div class="cities" id="cities"></div>
       <button id="resetBtn" type="button" class="ghost reset">RESET PROGRESS</button>
     </section>
@@ -63,5 +63,6 @@
     </section>
   </main>
   <script src="game.js"></script>
+  <script src="globe.js"></script>
 </body>
 </html>

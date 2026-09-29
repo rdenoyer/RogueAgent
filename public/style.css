@@ -103,4 +103,6 @@ dd { margin: 2px 0 0; }
 .aibomRow.bad { border-left-color: var(--danger); }
 .aibomRow .tag { font-weight: bold; }
 .reset { margin-top: 14px; font-size: 0.8rem; }
+.globe { display: block; width: 100%; height: 340px; cursor: grab; touch-action: none; margin-bottom: 12px; }
+.globe:active { cursor: grabbing; }
 [hidden] { display: none !important; }
