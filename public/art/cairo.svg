@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" preserveAspectRatio="xMidYMid slice">
+<style>
+.sun{animation:bob 6s ease-in-out infinite}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.dust{animation:blow 7s linear infinite}.dust:nth-child(2n){animation-duration:9s}.dust:nth-child(3n){animation-duration:5s}
+@keyframes blow{from{transform:translateX(-40px);opacity:0}20%{opacity:.7}to{transform:translateX(860px);opacity:0}}
+.heat{animation:hz 3s ease-in-out infinite}@keyframes hz{0%,100%{opacity:.15}50%{opacity:.35}}
+</style>
+<defs><linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ffd27a"/></linearGradient></defs>
+<rect width="800" height="220" fill="url(#c)"/>
+<circle class="sun" cx="620" cy="90" r="44" fill="#fff3c4"/>
+<rect class="heat" x="0" y="120" width="800" height="30" fill="#fff"/>
+<polygon points="120,175 230,70 340,175" fill="#b8642a"/><polygon points="230,70 340,175 260,175" fill="#96491b"/>
+<polygon points="300,175 380,100 460,175" fill="#c4713a"/><polygon points="380,100 460,175 410,175" fill="#a2571f"/>
+<polygon points="60,175 110,125 160,175" fill="#c4713a"/>
+<path d="M0,180 Q200,150 400,182 T800,170 V220 H0Z" fill="#e0a04a"/><path d="M0,200 Q250,175 500,205 T800,195 V220 H0Z" fill="#c98632"/>
+<g fill="#7a4a12"><circle class="dust" cx="0" cy="170" r="2"/><circle class="dust" cx="0" cy="185" r="1.5"/><circle class="dust" cx="0" cy="160" r="2"/><circle class="dust" cx="0" cy="195" r="1.5"/><circle class="dust" cx="0" cy="178" r="2"/></g>
+<text x="16" y="208" fill="#4a2a08" font-family="monospace" font-size="14" letter-spacing="3">CAIRO</text>
+</svg>

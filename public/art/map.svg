@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
+<style>
+.route{stroke-dasharray:6 8;animation:dash 1.6s linear infinite}@keyframes dash{to{stroke-dashoffset:-28}}
+.ping{transform-box:fill-box;transform-origin:center;animation:ping 2s ease-out infinite}.ping:nth-of-type(2n){animation-delay:.6s}.ping:nth-of-type(3n){animation-delay:1.2s}
+@keyframes ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.grid{animation:gl 4s ease-in-out infinite}@keyframes gl{0%,100%{opacity:.25}50%{opacity:.5}}
+</style>
+<rect width="800" height="300" fill="#0a0703"/>
+<g class="grid" stroke="#6b4700" stroke-width="1"><line x1="0" y1="75" x2="800" y2="75"/><line x1="0" y1="150" x2="800" y2="150"/><line x1="0" y1="225" x2="800" y2="225"/><line x1="200" y1="0" x2="200" y2="300"/><line x1="400" y1="0" x2="400" y2="300"/><line x1="600" y1="0" x2="600" y2="300"/></g>
+<g fill="#3d2800" stroke="#a06c00" stroke-width="1">
+<path d="M60,60 L200,50 L240,110 L200,170 L130,160 L90,120Z"/>
+<path d="M200,190 L260,180 L285,250 L240,290 L210,250Z"/>
+<path d="M370,60 L470,55 L500,110 L450,140 L390,120Z"/>
+<path d="M400,150 L490,150 L510,220 L450,260 L410,210Z"/>
+<path d="M500,50 L720,50 L750,110 L690,160 L580,150 L520,110Z"/>
+<path d="M640,220 L730,215 L745,260 L670,270Z"/>
+</g>
+<path class="route" d="M400,85 L640,110 L455,140 L255,225" fill="none" stroke="#ffd966" stroke-width="2"/>
+<g fill="#ffd966"><circle cx="400" cy="85" r="5"/><circle cx="640" cy="110" r="5"/><circle cx="455" cy="140" r="5"/><circle cx="255" cy="225" r="5"/></g>
+<g fill="none" stroke="#ffd966" stroke-width="2"><circle class="ping" cx="400" cy="85" r="8"/><circle class="ping" cx="640" cy="110" r="8"/><circle class="ping" cx="455" cy="140" r="8"/><circle class="ping" cx="255" cy="225" r="8"/></g>
+<g fill="#ffd966" font-family="monospace" font-size="12"><text x="410" y="78">PARIS</text><text x="650" y="104">TOKYO</text><text x="465" y="134">CAIRO</text><text x="265" y="219">RIO</text></g>
+<g fill="#fff"><path d="M-8,0 L8,0 L0,-12Z" transform="rotate(90)"><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="M400,85 L640,110 L455,140 L255,225 L400,85"/></path></g>
+</svg>

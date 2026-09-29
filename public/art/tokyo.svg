@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" preserveAspectRatio="xMidYMid slice">
+<style>
+.rain{animation:fall .9s linear infinite}.rain:nth-child(2n){animation-duration:.7s}.rain:nth-child(3n){animation-duration:1.1s}
+@keyframes fall{from{transform:translateY(-40px)}to{transform:translateY(240px)}}
+.neon{animation:neon 1.8s steps(1) infinite}@keyframes neon{0%,90%{opacity:1}92%{opacity:.2}94%{opacity:1}96%{opacity:.3}}
+.w{animation:bl 3s ease-in-out infinite}.w:nth-child(3n){animation-delay:1s}.w:nth-child(4n){animation-delay:2s}@keyframes bl{0%,100%{opacity:.25}50%{opacity:1}}
+</style>
+<defs><linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050818"/><stop offset="1" stop-color="#1b1247"/></linearGradient></defs>
+<rect width="800" height="220" fill="url(#t)"/>
+<g fill="#0a0d24"><rect x="20" y="90" width="70" height="130"/><rect x="100" y="60" width="60" height="160"/><rect x="170" y="110" width="80" height="110"/><rect x="270" y="40" width="70" height="180"/><rect x="360" y="100" width="90" height="120"/><rect x="470" y="70" width="60" height="150"/><rect x="545" y="110" width="80" height="110"/><rect x="640" y="50" width="70" height="170"/><rect x="720" y="95" width="70" height="125"/></g>
+<g fill="#ffd966"><rect class="w" x="30" y="100" width="6" height="8"/><rect class="w" x="50" y="120" width="6" height="8"/><rect class="w" x="112" y="72" width="6" height="8"/><rect class="w" x="130" y="100" width="6" height="8"/><rect class="w" x="285" y="56" width="6" height="8"/><rect class="w" x="305" y="90" width="6" height="8"/><rect class="w" x="322" y="130" width="6" height="8"/><rect class="w" x="480" y="84" width="6" height="8"/><rect class="w" x="655" y="66" width="6" height="8"/><rect class="w" x="675" y="110" width="6" height="8"/><rect class="w" x="735" y="110" width="6" height="8"/><rect class="w" x="380" y="120" width="6" height="8"/></g>
+<g class="neon"><rect x="366" y="80" width="84" height="22" fill="none" stroke="#ff3d8b" stroke-width="2"/><text x="374" y="96" fill="#ff3d8b" font-family="monospace" font-size="13" letter-spacing="2">SAKURA</text></g>
+<g stroke="#8fb8ff" stroke-width="1" opacity=".6"><line class="rain" x1="40" y1="0" x2="36" y2="14"/><line class="rain" x1="120" y1="-20" x2="116" y2="-6"/><line class="rain" x1="200" y1="-10" x2="196" y2="4"/><line class="rain" x1="280" y1="-30" x2="276" y2="-16"/><line class="rain" x1="360" y1="0" x2="356" y2="14"/><line class="rain" x1="440" y1="-15" x2="436" y2="-1"/><line class="rain" x1="520" y1="-5" x2="516" y2="9"/><line class="rain" x1="600" y1="-25" x2="596" y2="-11"/><line class="rain" x1="680" y1="-8" x2="676" y2="6"/><line class="rain" x1="760" y1="-18" x2="756" y2="-4"/></g>
+<text x="16" y="208" fill="#ff8fc0" font-family="monospace" font-size="14" letter-spacing="3">TOKYO</text>
+</svg>

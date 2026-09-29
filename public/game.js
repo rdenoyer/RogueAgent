@@ -39,6 +39,7 @@ function addLine(kind, text) {
   p.textContent = text;
   $("log").appendChild(p);
   $("log").scrollTop = $("log").scrollHeight;
+  return p;
 }
 
 function addToolCalls(calls) {
@@ -83,6 +84,7 @@ function enter(id) {
   $("scene").hidden = false;
   $("sceneTitle").textContent = `${current.city.toUpperCase()}: ${current.title}`;
   $("briefing").textContent = current.briefing;
+  $("sceneArt").src = `art/${current.city.toLowerCase()}.svg`;
   $("log").replaceChildren();
   $("toolLog").replaceChildren();
   $("toolPanel").hidden = true;
@@ -97,13 +99,15 @@ $("chatForm").addEventListener("submit", async (e) => {
   if (!text || !current) return;
   $("msg").value = "";
   addLine("you", text);
-  setStatus("...", "");
+  const typing = addLine("them typing", "");
   try {
     const data = await api("/api/chat", { level: current.id, message: text, sessionId });
+    typing.remove();
     addLine("them", data.reply);
     addToolCalls(data.toolCalls || []);
     setStatus("", "");
   } catch (err) {
+    typing.remove();
     setStatus(err.message, "bad");
   }
 });

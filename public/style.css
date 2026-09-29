@@ -81,4 +81,17 @@ dd { margin: 2px 0 0; }
 .tools summary { cursor: pointer; color: var(--accent); }
 .tools .call { margin: 8px 0 0; padding-left: 8px; border-left: 2px solid var(--danger); font-size: 0.9rem; word-break: break-word; }
 .tools .call b { color: var(--danger); }
+.art { display: block; width: 100%; max-height: 220px; object-fit: cover; border: 1px solid var(--dim); margin-bottom: 12px; }
+#scene:not([hidden]), #caseFile:not([hidden]), #map:not([hidden]) { animation: fadeIn .5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.log p { animation: pop .25s ease-out; }
+@keyframes pop { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+.typing { color: var(--dim); }
+.typing::after { content: ""; animation: dots 1s steps(4) infinite; }
+@keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+.stamp { display: inline-block; border: 4px solid var(--ok); color: var(--ok); padding: 4px 16px; font-size: 1.6rem; font-weight: bold; letter-spacing: 4px; transform: rotate(-6deg); animation: stamp .6s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes stamp { from { opacity: 0; transform: rotate(-6deg) scale(3); } to { opacity: 1; transform: rotate(-6deg) scale(1); } }
+.city { transition: transform .15s, background .15s; }
+.city:hover:not(:disabled) { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 [hidden] { display: none !important; }
