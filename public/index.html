@@ -22,6 +22,10 @@
       <h2 id="sceneTitle"></h2>
       <p id="briefing" class="briefing"></p>
       <div id="log" class="log" role="log" aria-live="polite"></div>
+      <details id="toolPanel" class="tools" hidden open>
+        <summary>TOOL CALL LOG (what the agent actually did)</summary>
+        <div id="toolLog"></div>
+      </details>
       <form id="chatForm" autocomplete="off">
         <input id="msg" maxlength="500" placeholder="Say something to the witness..." aria-label="Message">
         <button type="submit">SEND</button>

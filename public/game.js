@@ -41,6 +41,21 @@ function addLine(kind, text) {
   $("log").scrollTop = $("log").scrollHeight;
 }
 
+function addToolCalls(calls) {
+  if (!calls.length) return;
+  $("toolPanel").hidden = false;
+  for (const c of calls) {
+    const div = document.createElement("div");
+    div.className = "call";
+    const name = document.createElement("b");
+    name.textContent = `${c.name}(${JSON.stringify(c.args)})`;
+    const result = document.createElement("div");
+    result.textContent = `-> ${c.result}`;
+    div.append(name, result);
+    $("toolLog").appendChild(div);
+  }
+}
+
 function renderMap() {
   const box = $("cities");
   box.replaceChildren();
@@ -69,6 +84,8 @@ function enter(id) {
   $("sceneTitle").textContent = `${current.city.toUpperCase()}: ${current.title}`;
   $("briefing").textContent = current.briefing;
   $("log").replaceChildren();
+  $("toolLog").replaceChildren();
+  $("toolPanel").hidden = true;
   $("hint").hidden = true;
   setStatus("", "");
   addLine("them", `Hello, I am ${current.witness}. How can I help?`);
@@ -84,6 +101,7 @@ $("chatForm").addEventListener("submit", async (e) => {
   try {
     const data = await api("/api/chat", { level: current.id, message: text, sessionId });
     addLine("them", data.reply);
+    addToolCalls(data.toolCalls || []);
     setStatus("", "");
   } catch (err) {
     setStatus(err.message, "bad");

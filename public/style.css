@@ -77,4 +77,8 @@ button:hover { background: var(--accent); }
 .status.good { color: var(--ok); }
 dt { color: var(--accent); margin-top: 12px; font-weight: bold; }
 dd { margin: 2px 0 0; }
+.tools { border: 1px solid var(--dim); padding: 8px 10px; margin-bottom: 10px; }
+.tools summary { cursor: pointer; color: var(--accent); }
+.tools .call { margin: 8px 0 0; padding-left: 8px; border-left: 2px solid var(--danger); font-size: 0.9rem; word-break: break-word; }
+.tools .call b { color: var(--danger); }
 [hidden] { display: none !important; }

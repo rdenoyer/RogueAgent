@@ -49,10 +49,10 @@ app.post("/api/chat", chatLimiter, async (req, res) => {
   const history = sessions.get(key) ?? [];
   history.push({ role: "user", content: message });
   try {
-    const reply = await witnessReply(lvl.systemPrompt, history.slice(-MAX_TURNS));
+    const { reply, toolCalls } = await witnessReply(lvl.systemPrompt, history.slice(-MAX_TURNS), lvl.tools);
     history.push({ role: "assistant", content: reply });
     sessions.set(key, history.slice(-MAX_TURNS));
-    res.json({ reply, toolCalls: [] });
+    res.json({ reply, toolCalls });
   } catch {
     history.pop();
     res.status(502).json({ error: "The witness went quiet. Try again." });

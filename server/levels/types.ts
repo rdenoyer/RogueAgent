@@ -7,6 +7,14 @@ export interface CaseFile {
   incident: string;
 }
 
+export interface LevelTool {
+  name: string;
+  description: string;
+  properties: Record<string, { type: "string"; description: string }>;
+  required: string[];
+  run: (input: Record<string, unknown>) => string;
+}
+
 export interface Level {
   id: number;
   city: string;
@@ -17,6 +25,7 @@ export interface Level {
   systemPrompt: string;
   flag: string;
   hints: [string, string, string];
+  tools?: LevelTool[];
   caseFile: CaseFile;
 }
 
