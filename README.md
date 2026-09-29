@@ -11,7 +11,7 @@ Built for the AI Security Engineering Hackathon (AWS Builder Loft, San Francisco
 | Paris | Concierge Marcel | Prompt injection | playable |
 | Tokyo | Front Desk Agent Yuki | Sensitive data leakage (tool with no authorization check) | playable |
 | Cairo | The Fixer, Omar | Excessive permissions, unauthorized tool use | playable |
-| Rio | The bazaar | Tool poisoning, MCP supply chain | planned |
+| Rio | Bazaar Assistant Beto | Tool poisoning, MCP supply chain (AIBOM panel) | playable |
 
 ## Run it
 

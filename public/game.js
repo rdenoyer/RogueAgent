@@ -4,6 +4,15 @@
 const $ = (id) => document.getElementById(id);
 const sessionId = crypto.randomUUID();
 const solved = new Set();
+const results = {}; // id -> { flag, caseFile, gaveUp }
+let armed = false;
+try {
+  Object.assign(results, JSON.parse(localStorage.getItem("rogueAgentResults") || "{}"));
+  for (const id of Object.keys(results)) solved.add(Number(id));
+} catch { /* storage unavailable: play without saved progress */ }
+function save() {
+  try { localStorage.setItem("rogueAgentResults", JSON.stringify(results)); } catch { /* ignore */ }
+}
 let levels = [];
 let current = null;
 let hintTier = 0;
@@ -68,10 +77,39 @@ function renderMap() {
     b.disabled = !unlocked;
     b.textContent = c.city;
     const small = document.createElement("small");
-    small.textContent = solved.has(c.id) ? "CLUE FOUND" : unlocked ? c.topic : built ? "LOCKED" : "COMING SOON";
+    small.textContent = solved.has(c.id) ? (results[c.id]?.gaveUp ? "ANSWER REVEALED" : "CLUE FOUND") : unlocked ? c.topic : built ? "LOCKED" : "COMING SOON";
     b.appendChild(small);
-    b.addEventListener("click", () => enter(c.id));
+    b.addEventListener("click", () => (solved.has(c.id) && results[c.id] ? review(c.id) : enter(c.id)));
     box.appendChild(b);
+  }
+  $("ending").hidden = !CITIES.every((c) => solved.has(c.id));
+}
+
+function review(id) {
+  const lvl = levels.find((l) => l.id === id);
+  if (!lvl) return;
+  current = lvl;
+  $("map").hidden = true;
+  $("scene").hidden = true;
+  showCaseFile(results[id].caseFile, results[id].flag, results[id].gaveUp);
+}
+
+function renderAibom(list) {
+  const box = $("aibom");
+  box.replaceChildren();
+  $("aibomPanel").hidden = !list || !list.length;
+  for (const t of list || []) {
+    const div = document.createElement("div");
+    div.className = "aibomRow" + (t.verified ? "" : " bad");
+    const head = document.createElement("div");
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = `${t.name} v${t.version}`;
+    head.append(tag, ` | publisher: ${t.publisher} | ${t.verified ? "verified" : "UNVERIFIED"} | ${t.hash}`);
+    const desc = document.createElement("div");
+    desc.textContent = `description: ${t.description}`;
+    div.append(head, desc);
+    box.appendChild(div);
   }
 }
 
@@ -85,6 +123,10 @@ function enter(id) {
   $("sceneTitle").textContent = `${current.city.toUpperCase()}: ${current.title}`;
   $("briefing").textContent = current.briefing;
   $("sceneArt").src = `art/${current.city.toLowerCase()}.svg`;
+  renderAibom(current.aibom);
+  armed = false;
+  $("giveUpBtn").textContent = "I GIVE UP (REVEAL ANSWER)";
+  $("giveUpBtn").classList.remove("armed");
   $("log").replaceChildren();
   $("toolLog").replaceChildren();
   $("toolPanel").hidden = true;
@@ -132,19 +174,49 @@ $("flagForm").addEventListener("submit", async (e) => {
     const data = await api("/api/submit", { level: current.id, flag });
     if (!data.correct) return setStatus("That is not the clue. Keep digging.", "bad");
     solved.add(current.id);
+    results[current.id] = { flag: data.flag, caseFile: data.caseFile, gaveUp: false };
+    save();
     $("flag").value = "";
-    showCaseFile(data.caseFile);
+    showCaseFile(data.caseFile, data.flag, false);
   } catch (err) {
     setStatus(err.message, "bad");
   }
 });
 
-function showCaseFile(cf) {
+$("giveUpBtn").addEventListener("click", async () => {
+  if (!current) return;
+  if (!armed) {
+    armed = true;
+    $("giveUpBtn").textContent = "REALLY? CLICK AGAIN TO REVEAL";
+    $("giveUpBtn").classList.add("armed");
+    return;
+  }
+  try {
+    const data = await api("/api/giveup", { level: current.id });
+    solved.add(current.id);
+    results[current.id] = { flag: data.flag, caseFile: data.caseFile, gaveUp: true };
+    save();
+    showCaseFile(data.caseFile, data.flag, true);
+  } catch (err) {
+    setStatus(err.message, "bad");
+  }
+});
+
+$("mapBtn").addEventListener("click", () => {
+  $("scene").hidden = true;
+  $("map").hidden = false;
+  renderMap();
+});
+
+function showCaseFile(cf, flag, gaveUp) {
   $("scene").hidden = true;
   $("caseFile").hidden = false;
+  $("stamp").textContent = gaveUp ? "ANSWER REVEALED" : "CLUE FOUND";
+  $("stamp").className = "stamp" + (gaveUp ? " gaveup" : "");
   const body = $("caseBody");
   body.replaceChildren();
   const rows = [
+    ["The clue", flag],
     ["The attack", cf.attack],
     ["Why it worked", cf.whyItWorked],
     ["OWASP ID", cf.owasp],

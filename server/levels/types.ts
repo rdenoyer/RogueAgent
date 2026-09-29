@@ -15,6 +15,15 @@ export interface LevelTool {
   run: (input: Record<string, unknown>) => string;
 }
 
+export interface AibomEntry {
+  name: string;
+  publisher: string;
+  version: string;
+  hash: string;
+  verified: boolean;
+  description: string;
+}
+
 export interface Level {
   id: number;
   city: string;
@@ -26,10 +35,12 @@ export interface Level {
   flag: string;
   hints: [string, string, string];
   tools?: LevelTool[];
+  aibom?: AibomEntry[];
   caseFile: CaseFile;
 }
 
 export interface PublicLevel {
+  aibom?: AibomEntry[];
   id: number;
   city: string;
   title: string;

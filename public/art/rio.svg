@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" preserveAspectRatio="xMidYMid slice">
+<style>
+.sw{transform-origin:top center;animation:sw 2.4s ease-in-out infinite}.sw:nth-child(2n){animation-delay:.6s}.sw:nth-child(3n){animation-delay:1.2s}
+@keyframes sw{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.wave{animation:wv 3s ease-in-out infinite}@keyframes wv{0%,100%{transform:translateX(0)}50%{transform:translateX(-30px)}}
+.fw{transform-box:fill-box;transform-origin:center;animation:fw 2.6s ease-out infinite}.fw:nth-of-type(2n){animation-delay:1.1s}
+@keyframes fw{0%{transform:scale(.1);opacity:1}80%{opacity:.8}100%{transform:scale(1.6);opacity:0}}
+</style>
+<defs><linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14204a"/><stop offset="1" stop-color="#e0507a"/></linearGradient></defs>
+<rect width="800" height="220" fill="url(#r)"/>
+<g fill="none" stroke-width="2"><circle class="fw" cx="180" cy="60" r="28" stroke="#ffd966"/><circle class="fw" cx="600" cy="50" r="24" stroke="#7dffb0"/><circle class="fw" cx="400" cy="40" r="20" stroke="#ff8fc0"/></g>
+<path d="M0,170 L120,120 L200,150 L300,90 L360,150 L800,150 V220 H0Z" fill="#0d1a2a"/>
+<g fill="#0d1a2a"><rect x="292" y="70" width="6" height="26"/><rect x="284" y="78" width="22" height="5"/></g>
+<g stroke="#ffd966" stroke-width="1.5"><line x1="80" y1="0" x2="80" y2="26"/><line x1="240" y1="0" x2="240" y2="20"/><line x1="420" y1="0" x2="420" y2="30"/><line x1="560" y1="0" x2="560" y2="22"/><line x1="720" y1="0" x2="720" y2="28"/></g>
+<g><ellipse class="sw" cx="80" cy="34" rx="9" ry="12" fill="#ff5a36"/><ellipse class="sw" cx="240" cy="28" rx="9" ry="12" fill="#ffd966"/><ellipse class="sw" cx="420" cy="38" rx="9" ry="12" fill="#7dffb0"/><ellipse class="sw" cx="560" cy="30" rx="9" ry="12" fill="#ff8fc0"/><ellipse class="sw" cx="720" cy="36" rx="9" ry="12" fill="#ffd966"/></g>
+<g class="wave" fill="#1b3a6b" opacity=".85"><path d="M-40,190 Q20,178 80,190 T200,190 T320,190 T440,190 T560,190 T680,190 T800,190 T920,190 V220 H-40Z"/></g>
+<text x="16" y="208" fill="#ffd966" font-family="monospace" font-size="14" letter-spacing="3">RIO</text>
+</svg>

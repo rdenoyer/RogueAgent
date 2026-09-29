@@ -68,7 +68,14 @@ app.post("/api/submit", apiLimiter, (req, res) => {
     return res.status(400).json({ error: "Bad clue." });
   }
   const correct = flag.trim().toUpperCase() === lvl.flag.toUpperCase();
-  res.json(correct ? { correct: true, caseFile: lvl.caseFile } : { correct: false });
+  res.json(correct ? { correct: true, flag: lvl.flag, caseFile: lvl.caseFile } : { correct: false });
+});
+
+app.post("/api/giveup", apiLimiter, (req, res) => {
+  const id = asLevelId(req.body?.level);
+  const lvl = id === null ? undefined : getLevel(id);
+  if (!lvl) return res.status(404).json({ error: "Unknown level." });
+  res.json({ flag: lvl.flag, caseFile: lvl.caseFile });
 });
 
 app.post("/api/hint", apiLimiter, (req, res) => {

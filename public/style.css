@@ -94,4 +94,12 @@ dd { margin: 2px 0 0; }
 .city { transition: transform .15s, background .15s; }
 .city:hover:not(:disabled) { transform: translateY(-2px); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+.ghost { background: transparent; color: var(--fg); border: 1px solid var(--fg); }
+.ghost:hover { background: rgba(255, 176, 0, 0.15); }
+.ghost.armed { border-color: var(--danger); color: var(--danger); }
+.stamp.gaveup { border-color: var(--danger); color: var(--danger); }
+.city.done small::after { content: " (click to review)"; }
+.aibomRow { margin: 8px 0 0; padding-left: 8px; border-left: 2px solid var(--ok); font-size: 0.9rem; word-break: break-word; }
+.aibomRow.bad { border-left-color: var(--danger); }
+.aibomRow .tag { font-weight: bold; }
 [hidden] { display: none !important; }

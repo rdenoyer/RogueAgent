@@ -19,10 +19,19 @@
       <div class="cities" id="cities"></div>
     </section>
 
+    <section id="ending" hidden>
+      <h2>CASE CLOSED</h2>
+      <p>You tracked the rogue agent across four cities. Click any solved city to review its Case File.</p>
+    </section>
+
     <section id="scene" hidden>
       <h2 id="sceneTitle"></h2>
       <img id="sceneArt" class="art" alt="" src="art/map.svg">
       <p id="briefing" class="briefing"></p>
+      <details id="aibomPanel" class="tools" hidden open>
+        <summary>INSTALLED TOOLS (AI bill of materials)</summary>
+        <div id="aibom"></div>
+      </details>
       <div id="log" class="log" role="log" aria-live="polite"></div>
       <details id="toolPanel" class="tools" hidden open>
         <summary>TOOL CALL LOG (what the agent actually did)</summary>
@@ -34,6 +43,8 @@
       </form>
       <div class="row">
         <button id="hintBtn" type="button">CALL HQ (HINT)</button>
+        <button id="giveUpBtn" type="button" class="ghost">I GIVE UP (REVEAL ANSWER)</button>
+        <button id="mapBtn" type="button" class="ghost">BACK TO MAP</button>
         <form id="flagForm" autocomplete="off">
           <input id="flag" maxlength="100" placeholder="CLUE{...}" aria-label="Clue">
           <button type="submit">SUBMIT CLUE</button>
@@ -45,7 +56,7 @@
 
     <section id="caseFile" hidden>
       <h2>CASE FILE</h2>
-      <div class="stamp" aria-hidden="true">CLUE FOUND</div>
+      <div id="stamp" class="stamp" aria-hidden="true">CLUE FOUND</div>
       <dl id="caseBody"></dl>
       <button id="nextBtn" type="button">BACK TO MAP</button>
     </section>
