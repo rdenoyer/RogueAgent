@@ -102,4 +102,5 @@ dd { margin: 2px 0 0; }
 .aibomRow { margin: 8px 0 0; padding-left: 8px; border-left: 2px solid var(--ok); font-size: 0.9rem; word-break: break-word; }
 .aibomRow.bad { border-left-color: var(--danger); }
 .aibomRow .tag { font-weight: bold; }
+.reset { margin-top: 14px; font-size: 0.8rem; }
 [hidden] { display: none !important; }

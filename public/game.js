@@ -202,6 +202,14 @@ $("giveUpBtn").addEventListener("click", async () => {
   }
 });
 
+$("resetBtn").addEventListener("click", () => {
+  if (!confirm("Reset all progress? Solved levels will be cleared.")) return;
+  for (const k of Object.keys(results)) delete results[k];
+  solved.clear();
+  try { localStorage.removeItem("rogueAgentResults"); } catch { /* ignore */ }
+  renderMap();
+});
+
 $("mapBtn").addEventListener("click", () => {
   $("scene").hidden = true;
   $("map").hidden = false;
