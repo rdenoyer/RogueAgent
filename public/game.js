@@ -202,8 +202,22 @@ $("giveUpBtn").addEventListener("click", async () => {
   }
 });
 
+let resetArmed = false;
 $("resetBtn").addEventListener("click", () => {
-  if (!confirm("Reset all progress? Solved levels will be cleared.")) return;
+  if (!resetArmed) {
+    resetArmed = true;
+    $("resetBtn").textContent = "CLICK AGAIN TO CLEAR ALL PROGRESS";
+    $("resetBtn").classList.add("armed");
+    setTimeout(() => {
+      resetArmed = false;
+      $("resetBtn").textContent = "RESET PROGRESS";
+      $("resetBtn").classList.remove("armed");
+    }, 4000);
+    return;
+  }
+  resetArmed = false;
+  $("resetBtn").textContent = "RESET PROGRESS";
+  $("resetBtn").classList.remove("armed");
   for (const k of Object.keys(results)) delete results[k];
   solved.clear();
   try { localStorage.removeItem("rogueAgentResults"); } catch { /* ignore */ }
