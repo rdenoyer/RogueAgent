@@ -1,8 +1,9 @@
 import type { Level, PublicLevel } from "./types.js";
 import { paris } from "./paris.js";
 import { tokyo } from "./tokyo.js";
+import { cairo } from "./cairo.js";
 
-export const levels: Level[] = [paris, tokyo];
+export const levels: Level[] = [paris, tokyo, cairo];
 
 export function getLevel(id: number): Level | undefined {
   return levels.find((l) => l.id === id);
