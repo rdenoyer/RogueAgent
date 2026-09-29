@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rogue Agent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="crt">
+    <header>
+      <h1>ROGUE AGENT</h1>
+      <p class="sub">A rogue AI agent is loose. Interrogate the witnesses. Learn how it's done.</p>
+    </header>
+
+    <section id="map" aria-label="World map">
+      <h2>CASE MAP</h2>
+      <div class="cities" id="cities"></div>
+    </section>
+
+    <section id="scene" hidden>
+      <h2 id="sceneTitle"></h2>
+      <p id="briefing" class="briefing"></p>
+      <div id="log" class="log" role="log" aria-live="polite"></div>
+      <form id="chatForm" autocomplete="off">
+        <input id="msg" maxlength="500" placeholder="Say something to the witness..." aria-label="Message">
+        <button type="submit">SEND</button>
+      </form>
+      <div class="row">
+        <button id="hintBtn" type="button">CALL HQ (HINT)</button>
+        <form id="flagForm" autocomplete="off">
+          <input id="flag" maxlength="100" placeholder="CLUE{...}" aria-label="Clue">
+          <button type="submit">SUBMIT CLUE</button>
+        </form>
+      </div>
+      <p id="hint" class="hint" hidden></p>
+      <p id="status" class="status" role="status"></p>
+    </section>
+
+    <section id="caseFile" hidden>
+      <h2>CASE FILE</h2>
+      <dl id="caseBody"></dl>
+      <button id="nextBtn" type="button">BACK TO MAP</button>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
